@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    >
+    <LinearLayout android:id="@+id/linearLayout1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="102dp"
+
+               android:orientation="horizontal"
+
+                android:background="@mipmap/background2">
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton5"
+                android:background="@mipmap/planner2"
+                android:maxWidth="55dp"
+
+
+                android:adjustViewBounds="true"
+
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/spinner5"
+                android:layout_toStartOf="@+id/spinner5" />
+
+            <Spinner
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Title"
+                    android:id="@+id/spinner5"
+
+
+
+                android:layout_marginRight="95dp"
+                android:layout_marginEnd="95dp"
+
+                style="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"
+
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:paddingBottom="20dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SAVE"
+                android:id="@+id/saveButton"
+                android:onClick="savePlannerTitle"
+                android:layout_alignTop="@+id/spinner5"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="77dp"
+            android:background="@mipmap/background2">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton"
+                    android:background="@mipmap/disney"
+                    android:maxWidth="55dp"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Activity"
+                    android:id="@+id/spinner3"
+                    android:accessibilityLiveRegion="polite" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:id="@+id/button"
+                    android:onClick="addNewRow" />
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp">
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+        </LinearLayout>
+
+        <ScrollView android:layout_height="match_parent"
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:background="@mipmap/background2">
+
+            <LinearLayout android:id="@+id/linearLayout2"
+
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

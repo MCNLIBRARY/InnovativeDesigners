@@ -1,0 +1,12 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="ORANGE">#ffc74717</color>
+    <color name="PINK">#ffc7475d</color>
+    <color name="BRIGHT">#ddef082d</color>
+
+
+</resources>

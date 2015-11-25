@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout android:id="@+id/linearLayout1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:background="@mipmap/background2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="                         PLANNER TITLE:    "
+
+                    android:id="@+id/textView"
+
+                    android:layout_gravity="right"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text= "CHORES"
+                    android:id="@+id/textView2"
+                    android:layout_gravity="right"
+                    android:textStyle="bold|italic" />
+
+
+
+            </TableRow>
+
+
+
+        </TableLayout>
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="77dp"
+            android:background="@mipmap/background2">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="click to change the picture"
+                    android:id="@+id/imageButton"
+                    android:background="@mipmap/b"
+                    android:maxWidth="55dp"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Activity"
+                    android:id="@+id/spinner3"
+                    android:accessibilityLiveRegion="polite" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:id="@+id/button"
+                    android:onClick="addNewRow" />
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp">
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+        </LinearLayout>
+
+        <ScrollView android:layout_height="match_parent"
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:background="@mipmap/background2">
+
+            <LinearLayout android:id="@+id/linearLayout2"
+
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

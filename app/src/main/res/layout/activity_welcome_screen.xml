@@ -1,0 +1,71 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context="trial.customlist.WelcomeScreen">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TextView android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:keepScreenOn="true" android:textColor="#33b5e5"
+    android:textStyle="bold"
+        android:textSize="50sp"
+        android:gravity="center"
+     />
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:focusable="true"
+        android:background="@mipmap/background3"
+        android:layout_gravity="right|center_vertical">
+
+        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+        </LinearLayout>
+
+        <Button android:id="@+id/dummy_button" style="?metaButtonBarButtonStyle"
+            android:layout_width="132dp" android:layout_height="166dp"
+            android:layout_weight="1" android:text="CHORES"
+            android:layout_gravity="center"
+            android:onClick="kids_page"
+            android:textColor="@color/background_floating_material_dark"
+            android:textStyle="bold"
+            android:background="@mipmap/disney" />
+
+        <Button
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:text="Parents"
+            android:id="@+id/button3"
+            android:layout_gravity="right|bottom"
+            android:onClick="parents_page"
+            android:background="@android:color/holo_orange_dark"
+            android:textColor="#ea160b20" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KIDS FUN PLANNER"
+            android:id="@+id/textView4"
+            android:layout_gravity="center_horizontal|top"
+            android:textColor="@android:color/primary_text_light"
+            android:textStyle="bold|normal|italic"
+            android:paddingTop="25dp"
+            android:typeface="serif"
+            android:textSize="30dp"
+            android:textIsSelectable="false" />
+
+    </FrameLayout>
+
+</FrameLayout>
