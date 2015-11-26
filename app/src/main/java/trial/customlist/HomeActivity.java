@@ -20,6 +20,7 @@ public class HomeActivity extends Activity{
     private Button parents;
     private Button kids;
     LinearLayout ll,l2;
+    Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class HomeActivity extends Activity{
                  //   WindowManager.LayoutParams.FLAG_FULLSCREEN);
        // }
         setContentView(R.layout.activity_home);
-
+        db = new Database(HomeActivity.this);
         appname = (TextView)findViewById(R.id.textView);
         parents = (Button)findViewById(R.id.button);
         kids = (Button)findViewById(R.id.button2);
@@ -52,6 +53,7 @@ public class HomeActivity extends Activity{
             }
         });
 
+
         kids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +72,7 @@ public class HomeActivity extends Activity{
 
     public void loadPlanners(        )
     {
-       Database db = new Database(HomeActivity.this);
+
         ArrayList<String> rows;
         rows = db.TitleValues();
         String activities[] = rows.toArray(new String[rows.size()]);

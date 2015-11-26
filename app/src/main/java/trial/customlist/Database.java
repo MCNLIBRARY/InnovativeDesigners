@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 
 public class Database {
 
@@ -18,7 +20,7 @@ public class Database {
     private SQLHelper helper;
     private SQLiteDatabase db;
     private Context context;
-    ArrayList<String> productRows;
+    ArrayList<String> productRows,productRows1;
     ArrayList<Integer> productRows2;
     public static final String DB_TABLE = "CHORES_CHECKLIST_ITEMS";
     public static final String DB_TABLE1 = "CHECKLIST_ITEMS";
@@ -603,6 +605,55 @@ public class Database {
 
         }
         return productRows;
+    }
+
+    public ArrayList<String> plannerDetails()
+    {
+        try {
+            productRows2 = new ArrayList<Integer>();
+            String[] columns1 = new String[]{ "PLANNER_ID"};
+            if(db.isOpen()==false) {
+                openReadable();
+            }
+            Cursor cursor1 = db.query(DB_TABLE1, columns1, null, null, null, null, null);
+            cursor1.moveToFirst();
+            while (cursor1.isAfterLast() == false) {
+                productRows2.add(cursor1.getInt(0));
+                cursor1.moveToNext();
+            }
+
+
+            Integer activities[] = productRows2.toArray(new Integer[productRows2.size()]);
+
+            Integer[] unique = new HashSet<Integer>(Arrays.asList(activities)).toArray(new Integer[0]);
+
+            for(int j=0;j <= unique.length ;j++) {
+
+                productRows1 = new ArrayList<String>();
+
+
+                if (db.isOpen() == false) {
+                    openReadable();
+                }
+                String selectQuery = "SELECT  PLANNER_TITLE FROM " + DB_TABLE3 + " WHERE ID = '" + unique[j] + "'";
+                Cursor cursor = db.rawQuery(selectQuery, null);
+
+                cursor.moveToFirst();
+                while (cursor.isAfterLast() == false) {
+                    productRows1.add(cursor.getString(0));
+
+                    cursor.moveToNext();
+
+                }
+
+            }
+
+             } catch (Exception e) {
+            Log.e("error", e.toString());
+            e.printStackTrace();
+
+        }
+        return productRows1;
     }
 
     public int PlannerID(String title)
