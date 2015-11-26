@@ -44,14 +44,15 @@ public class MainActivity2Activity extends Activity
 
         db=new Database(MainActivity2Activity.this);
 
-        final ArrayList<Integer> rows2 = db.listPictures();
+        int planner=1;
+        final ArrayList<Integer> rows2 = db.listPictures(planner);
         Integer pictures[] = rows2.toArray(new Integer[rows2.size()]);
 
-        final ArrayList<String> rows = db.listActivities();
+        final ArrayList<String> rows = db.listActivities(planner);
         String activities[] = rows.toArray(new String[rows.size()]);
 
 
-        final ArrayList<Integer> rows1 = db.listID();
+        final ArrayList<Integer> rows1 = db.listID(planner);
         Integer ID[] = rows1.toArray(new Integer[rows1.size()]);
 
 

@@ -1,6 +1,7 @@
 package trial.customlist;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -27,13 +28,16 @@ public class edit_activities extends ActionBarActivity {
     public static Integer position_flag ;
     public static Integer picture_flag ;
     Database db;
-    Button b, navigate,save;
+    public static Button save;
+    Button b, navigate;
     LinearLayout ll,l2;
     ImageButton ib,ibTitle;
     int tagIdimage;
     public static int position;
     picture_library p = new picture_library();
     public List<String> list,listTitle;
+
+    public static int globalPlannerValue;
 
     public ArrayAdapter<String> dataAdapter,dataAdapterTitle;
 
@@ -54,8 +58,13 @@ public class edit_activities extends ActionBarActivity {
 
         navigate = (Button) findViewById(R.id.button2);
         db = new Database(edit_activities.this);
-        rows2 = db.listPictures();
-        rows = db.listActivities();
+
+        globalPlannerValue=6;
+
+        rows2 = db.listPictures(globalPlannerValue);
+        rows = db.listActivities(globalPlannerValue);
+
+
         if ((rows.size())>0)
             fetchData();
         // db.addRowTest();
@@ -73,7 +82,7 @@ public class edit_activities extends ActionBarActivity {
         list = new ArrayList<String>();
 
         //ENABLE TO ADD HARDCODE ACTIVITY SPINNER VALUES
-       // db.spinnerArray();
+     // db.spinnerArray();
 
         list=db.spinnerValues();
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
@@ -86,7 +95,7 @@ public class edit_activities extends ActionBarActivity {
         //TITLE UI
 
       //ENABLE TO ADD HARDCODE TITLE SPINNER VALUES
-      //  db.plannerTitles();
+       // db.plannerTitles();
 
         ibTitle = (ImageButton) findViewById(R.id.imageButton5);
         addListenerOnImageButtonSelection1(picture_flag);
@@ -100,6 +109,8 @@ public class edit_activities extends ActionBarActivity {
         dataAdapterTitle = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listTitle);
         dataAdapterTitle.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTitle.setAdapter(dataAdapterTitle);
+
+       spTitle.setSelection(globalPlannerValue);
         flag=1;
         addListenerOnSpinnerItemSelection();
 
@@ -120,6 +131,7 @@ public void refreshspinner()
     dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     sp.setAdapter(dataAdapter);
+
     addListenerOnSpinnerItemSelection();
 }
 
@@ -357,14 +369,14 @@ public void refreshspinner()
     public void fetchData(        ) {
 
 
-       rows2 = db.listPictures();
+       rows2 = db.listPictures(globalPlannerValue);
         Integer pictures[] = rows2.toArray(new Integer[rows2.size()]);
 
-       rows = db.listActivities();
+       rows = db.listActivities(globalPlannerValue);
         String activities[] = rows.toArray(new String[rows.size()]);
 
 
-        final ArrayList<Integer> rows1 = db.listID();
+        final ArrayList<Integer> rows1 = db.listID(globalPlannerValue);
         Integer ID[] = rows1.toArray(new Integer[rows1.size()]);
 
         temp=   new HashMap<String, Object>();
@@ -428,8 +440,16 @@ public void refreshspinner()
     public void savePlannerTitle(View v)
     {
         try {
-
-
+            CustomOnItemSelectedListener ob = new CustomOnItemSelectedListener();
+            db.changePlanner(globalPlannerValue, ob.planner_id);
+        } catch (Exception e) {
+            Log.e("error", e.toString());
+        }
+    }
+    public void changeButtonColor()
+    {
+        try {
+            save.setBackgroundColor(Color.GREEN);
         } catch (Exception e) {
             Log.e("error", e.toString());
         }

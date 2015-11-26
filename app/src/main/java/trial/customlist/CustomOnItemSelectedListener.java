@@ -32,6 +32,7 @@ public static String result;
             ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
             ((TextView) parent.getChildAt(0)).setTextSize(21);
              planner_id = db.PlannerID(parent.getItemAtPosition(pos).toString());
+             obj.changeButtonColor();
         }
 
         if ( (pos == 1) && (Integer) parent.getTag() == 1001)

@@ -23,6 +23,8 @@ public class MainActivity extends ListActivity {
     Animation animation = null;
     ImageView disney,disney1;
 
+    public static int plannerValue;
+
     MediaPlayer reward1;
 
     ArrayList<HashMap<String, Object>> players;
@@ -37,9 +39,12 @@ public class MainActivity extends ListActivity {
 
         inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        //re
+        plannerValue=1;
+
          Database dblist = new Database(MainActivity.this);
       // dblist.addRow();
-        final ArrayList<String> rows = dblist.listActivities();
+        final ArrayList<String> rows = dblist.listActivities(plannerValue);
         String names[] = rows.toArray(new String[rows.size()]);
 
 //        String teams[]={"Real Madrid","Barcelona","Chelsea",
@@ -47,7 +52,7 @@ public class MainActivity extends ListActivity {
 //                "ManU","Barcelona"};
 
 //
-       final ArrayList<Integer> imagesid1 = dblist.listPictures();
+       final ArrayList<Integer> imagesid1 = dblist.listPictures(plannerValue);
         Integer[] position=imagesid1.toArray(new Integer[imagesid1.size()]);
 
     picture_library obj = new picture_library();

@@ -13,7 +13,7 @@ public class Database {
 
 
     public static final String DB_NAME = "DATABASE";
-    public static final int DB_VERSION =2;
+    public static final int DB_VERSION =6;
 
     private SQLHelper helper;
     private SQLiteDatabase db;
@@ -93,15 +93,21 @@ public class Database {
 
     }
 
-    public ArrayList<String> listActivities()
+    public ArrayList<String> listActivities(int chosenPlanner)
     {
         try {
             productRows = new ArrayList<String>();
-            String[] columns1 = new String[]{ "ACTIVITY_NAME"};
+
+
+          //  String[] columns1 = new String[]{ "ACTIVITY_NAME"};
+          //  String selectQuery = "SELECT ACTIVITY_NAME FROM " + DB_TABLE1 + " WHERE PLANNER_ID= '"+rec+"'";
+            String selectQuery = "SELECT ACTIVITY_NAME FROM " + DB_TABLE1 + " WHERE PLANNER_ID= '"+chosenPlanner+"'";
+
             if(db.isOpen()==false) {
                 openReadable();
             }
-            Cursor cursor1 = db.query(DB_TABLE1, columns1, null, null, null, null, null);
+           // Cursor cursor1 = db.query(DB_TABLE1, columns1, null, null, null, null, null);
+            Cursor cursor1 = db.rawQuery(selectQuery, null);
             cursor1.moveToFirst();
             while (cursor1.isAfterLast() == false) {
                 productRows.add(cursor1.getString(0));
@@ -115,15 +121,20 @@ public class Database {
         }
         return productRows;
     }
-    public ArrayList<Integer> listPictures()
+    public ArrayList<Integer> listPictures(int chosenPlanner)
     {
         try {
+
+
             productRows2 = new ArrayList<Integer>();
-            String[] columns1 = new String[]{ "PICTURE_SOURCE"};
+         //   String[] columns1 = new String[]{ "PICTURE_SOURCE"};
+            String selectQuery = "SELECT PICTURE_SOURCE FROM " + DB_TABLE1 + " WHERE PLANNER_ID= '"+chosenPlanner+"'";
+
             if(db.isOpen()==false) {
                 openReadable();
             }
-            Cursor cursor1 = db.query(DB_TABLE1, columns1, null, null, null, null, null);
+         //   Cursor cursor1 = db.query(DB_TABLE1, columns1, null, null, null, null, null);
+            Cursor cursor1 = db.rawQuery(selectQuery, null);
             cursor1.moveToFirst();
             while (cursor1.isAfterLast() == false) {
                 productRows2.add(cursor1.getInt(0));
@@ -200,14 +211,16 @@ public class Database {
         return productRows;
     }
 
-    public ArrayList<Integer> listID() {
+    public ArrayList<Integer> listID(int chosenPlanner) {
         try {
             productRows2 = new ArrayList<Integer>();
-            String[] columns1 = new String[]{"ID"};
+          //  String[] columns1 = new String[]{"ID"};
+            String selectQuery = "SELECT ID FROM " + DB_TABLE1 + " WHERE PLANNER_ID= '"+chosenPlanner+"'";
             if (db.isOpen() == false) {
                 openReadable();
             }
-            Cursor cursor1 = db.query(DB_TABLE1, columns1, null, null, null, null, null);
+          //  Cursor cursor1 = db.query(DB_TABLE1, columns1, null, null, null, null, null);
+            Cursor cursor1 = db.rawQuery(selectQuery, null);
             cursor1.moveToFirst();
             while (cursor1.isAfterLast() == false) {
                 productRows2.add(cursor1.getInt(0));
@@ -310,6 +323,24 @@ public class Database {
 
     }
 
+    public void changePlanner(Integer oldPlanner,Integer newPlanner)
+    {
+
+        try {
+            if(db.isOpen()==false) {
+                openReadable();
+            }
+
+            db.execSQL("UPDATE " + DB_TABLE1 + " SET PLANNER_ID= '" + newPlanner +  "' WHERE PLANNER_ID = '" + oldPlanner +"'");
+
+        } catch (Exception e) {
+            Log.e("error", e.toString());
+            e.printStackTrace();
+
+        }
+        db.close();
+
+    }
     public void viewActivity(int rec)
     {
 
