@@ -55,7 +55,7 @@ public static String result;
 
                                 // obj.sp.postInvalidate();
                                 //  obj.sp.setAdapter(obj.dataAdapter);
-                                obj.refreshspinner();
+                                obj.refreshPlanner();
 
                             } catch (Exception e) {
                                 Log.e("", e.toString());

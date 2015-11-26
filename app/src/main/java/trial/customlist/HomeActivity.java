@@ -10,12 +10,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends Activity{
     public TextView appname;
     private Button parents;
     private Button kids;
+    LinearLayout ll,l2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public class HomeActivity extends Activity{
         parents.setTypeface(myCustomFont1);
         Typeface myCustomFont2 = Typeface.createFromAsset(getAssets(), "fonts/CookieMonster.ttf");
         kids.setTypeface(myCustomFont2);
-
+        loadPlanners();
         parents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,9 +64,86 @@ public class HomeActivity extends Activity{
             }
         });
 
+
+
     }
 
+    public void loadPlanners(        )
+    {
+       Database db = new Database(HomeActivity.this);
+        ArrayList<String> rows;
+        rows = db.TitleValues();
+        String activities[] = rows.toArray(new String[rows.size()]);
 
+      //  temp=   new HashMap<String, Object>();
+
+        for (int i=2 ;i<= rows.size()-1 ; i++)
+        {
+            // db.addRowTest();
+            //   Integer rec_id = db.recordId();
+          //  Integer rec_id = ID[i];
+         //   Integer image_id = p.photos[pictures[i]];
+
+            ll = (LinearLayout) findViewById(R.id.linearLayout3);
+
+            l2 = new LinearLayout(this);
+
+            l2.setOrientation(LinearLayout.HORIZONTAL);
+            // TableRow tr=(TableRow) findViewById(R.id.table_row);
+            //add image View
+
+           Button ib=new Button(this);
+            ib.setText(activities[i]);
+           final int id=db.PlannerID(activities[i]);
+
+           ib.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent i = new Intent(HomeActivity.this.getApplicationContext(), MainActivity.class);
+                    i.putExtra("PLANNER_ID",id);
+
+                    startActivity(i);
+                }
+            });
+//            ib.setBackgroundResource(image_id);
+//            ib.setMinimumWidth(55);
+          //  ib.setTag(rec_id);
+            // imageId=imageId+1;
+            //   ib.setId(imageId);
+           // picture_flag=1;
+          //  addListenerOnImageButtonSelection(picture_flag);
+            l2.addView(ib);
+            //add spinner
+//            sp = new Spinner(this);
+//            //  sp.setId(imageId);
+//            sp.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+//            List<String> list = new ArrayList<String>();
+//            list=db.spinnerValues();
+//            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+//                    android.R.layout.simple_spinner_item, list);
+//            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//            sp.setAdapter(dataAdapter);
+//            sp.setTag(rec_id);
+//
+//            String compareValue = activities[i];
+//            if (!compareValue.equals(null)) {
+//                int spinnerPosition = dataAdapter.getPosition(compareValue);
+//                sp.setSelection(spinnerPosition);
+//            }
+//
+//            addListenerOnSpinnerItemSelection1();
+//
+//            l2.addView(sp);
+
+
+            ll.addView(l2);
+
+
+        }
+
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

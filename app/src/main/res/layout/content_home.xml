@@ -15,15 +15,38 @@
 
     <TextView
         android:text="Kids Fun Planner"
-        android:layout_width="@dimen/textview_width"
-        android:layout_height="@dimen/textview_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:textSize="@dimen/font_size"
         android:textAlignment="center"
-        android:layout_marginTop="52dp"
+        android:textStyle="bold"
+
+
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold" />
+        android:layout_centerHorizontal="true" />
+
+    <HorizontalScrollView android:layout_height="wrap_content"
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
+
+        android:background="@mipmap/background3"
+
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/imageView"
+        android:layout_below="@+id/textView">
+
+        <LinearLayout android:id="@+id/linearLayout3"
+
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <Button
         android:layout_width="wrap_content"
@@ -32,10 +55,12 @@
         android:id="@+id/button2"
 
         android:textSize="35dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
         android:textStyle="bold"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginBottom="86dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
 
     <Button
         android:layout_width="wrap_content"
@@ -45,9 +70,7 @@
 
         android:textSize="30dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2"
-        android:layout_marginBottom="120dp" />
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -56,14 +79,6 @@
         android:background="@mipmap/l"
         android:layout_above="@+id/button2"
         android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

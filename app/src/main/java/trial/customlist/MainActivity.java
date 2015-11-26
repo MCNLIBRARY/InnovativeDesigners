@@ -2,6 +2,7 @@ package trial.customlist;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,8 +40,9 @@ public class MainActivity extends ListActivity {
 
         inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        //re
-        plannerValue=1;
+
+        Intent intent=getIntent();
+        plannerValue=intent.getIntExtra("PLANNER_ID",0);
 
          Database dblist = new Database(MainActivity.this);
       // dblist.addRow();

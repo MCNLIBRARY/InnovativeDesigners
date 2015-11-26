@@ -138,7 +138,24 @@ public void refreshspinner()
 
     addListenerOnSpinnerItemSelection();
 }
+    public void refreshPlanner()
+    {
 
+//    for (int i=0 ;i<=l2.getChildCount()-1;i++)
+//    {
+//       // l2.get
+//
+//    }
+
+        listTitle=db.TitleValues();
+
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listTitle);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spTitle.setAdapter(dataAdapter);
+
+        addListenerOnSpinnerItemSelection();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -153,12 +170,15 @@ public void refreshspinner()
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        int j=1;
+if(j==1){
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        Intent i = new Intent(edit_activities.this.getApplicationContext(), HomeActivity.class);
+        startActivity(i);
+        return true;
 
+
+    }
         return super.onOptionsItemSelected(item);
     }
   int ImageId=0;
