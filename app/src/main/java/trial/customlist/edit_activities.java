@@ -52,6 +52,8 @@ public class edit_activities extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_activities);
+
+
         save=(Button)findViewById(R.id.saveButton);
 
         sv=(ScrollView)findViewById(R.id.scrollView1);
@@ -59,7 +61,9 @@ public class edit_activities extends ActionBarActivity {
         navigate = (Button) findViewById(R.id.button2);
         db = new Database(edit_activities.this);
 
-        globalPlannerValue=6;
+        Intent i=getIntent();
+        globalPlannerValue=i.getIntExtra("PLANNER_ID",0);
+       // globalPlannerValue=6;
 
         rows2 = db.listPictures(globalPlannerValue);
         rows = db.listActivities(globalPlannerValue);
@@ -110,7 +114,7 @@ public class edit_activities extends ActionBarActivity {
         dataAdapterTitle.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTitle.setAdapter(dataAdapterTitle);
 
-       spTitle.setSelection(globalPlannerValue);
+       spTitle.setSelection(globalPlannerValue-1);
         flag=1;
         addListenerOnSpinnerItemSelection();
 

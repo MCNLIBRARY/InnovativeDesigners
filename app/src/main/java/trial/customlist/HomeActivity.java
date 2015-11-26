@@ -53,7 +53,9 @@ public class HomeActivity extends Activity{
             public void onClick(View v) {
               kids.setTextColor(Color.GREEN);
               kids.setBackgroundColor(Color.YELLOW);
-                Intent i = new Intent(HomeActivity.this.getApplicationContext(), MainActivity.class);
+                Intent i = new Intent(HomeActivity.this.getApplicationContext(), edit_activities.class);
+               i.putExtra("PLANNER_ID",6);
+
                 startActivity(i);
             }
         });
