@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -49,8 +50,14 @@ public class image_library extends ListActivity {
         }
         //players.add(temp);
         final CustomAdapter adapter=new CustomAdapter(this, R.layout.image_library_customlist,players);
+//
+//         setListAdapter(adapter);
 
-        setListAdapter(adapter);
+        GridView gridview = (GridView) findViewById(R.id.gridView);
+       gridview.setAdapter(adapter);
+//        final CustomAdapter gridViewAdapter = new CustomAdapter(this,R.layout.image_library_customlist,players);
+//        setListAdapter(gridViewAdapter);
+
 
         }
 

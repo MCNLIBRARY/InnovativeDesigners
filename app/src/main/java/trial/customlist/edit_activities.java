@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,13 +30,14 @@ public class edit_activities extends ActionBarActivity {
     public static Integer picture_flag ;
     Database db;
     public static Button save;
+    public static Integer plannerImage=5;
     Button b, navigate;
     LinearLayout ll,l2;
     ImageButton ib,ibTitle;
     int tagIdimage;
     public static int position;
     picture_library p = new picture_library();
-    public List<String> list,listTitle;
+    public static List<String> list,listTitle;
 
     public static int globalPlannerValue;
 
@@ -83,15 +85,22 @@ public class edit_activities extends ActionBarActivity {
 
         sp = (Spinner) findViewById(R.id.spinner3);
                                    sp.setTag(1000);
+
         list = new ArrayList<String>();
 
         //ENABLE TO ADD HARDCODE ACTIVITY SPINNER VALUES
-     // db.spinnerArray();
+      //db.spinnerArray();
+        if (db.spinnerValues().size()==0)
+        {
+            db.spinnerArray();
 
+        }
         list=db.spinnerValues();
+        //Collections.sort(list);
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(dataAdapter);
+
         addListenerOnSpinnerItemSelection();
 
         //  sp.setTag(rec_id);
@@ -99,22 +108,31 @@ public class edit_activities extends ActionBarActivity {
         //TITLE UI
 
       //ENABLE TO ADD HARDCODE TITLE SPINNER VALUES
-       // db.plannerTitles();
+       //db.plannerTitles();
+
+        if (db.TitleValues().size()==0)
+        {
+            db.plannerTitles();
+        }
 
         ibTitle = (ImageButton) findViewById(R.id.imageButton5);
+        ibTitle.setTag(2001);
         addListenerOnImageButtonSelection1(picture_flag);
 
         spTitle= (Spinner) findViewById(R.id.spinner5);
         spTitle.setTag(1001);
+        spTitle.setPrompt("Choose Planner Title");
         listTitle = new ArrayList<String>();
 
         listTitle=db.TitleValues();
+      //  Collections.sort(listTitle);
       //  listTitle.add("TESTING");
         dataAdapterTitle = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listTitle);
         dataAdapterTitle.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTitle.setAdapter(dataAdapterTitle);
+        spTitle.setSelection(globalPlannerValue-1);
 
-       spTitle.setSelection(globalPlannerValue-1);
+
         flag=1;
         addListenerOnSpinnerItemSelection();
 
@@ -129,14 +147,22 @@ public void refreshspinner()
 //       // l2.get
 //
 //    }
-    
-    list=db.spinnerValues();
 
-    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+    List<String> list1=db.spinnerValues();
+    Collections.sort(list1);
+    dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list1);
     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     sp.setAdapter(dataAdapter);
 
     addListenerOnSpinnerItemSelection();
+
+    CustomOnItemSelectedListener cs = new CustomOnItemSelectedListener();
+    String compareValue =cs.newValue1;
+    if (!compareValue.equals(null)) {
+        int spinnerPosition = dataAdapter.getPosition(compareValue);
+        sp.setSelection(spinnerPosition);
+    }
+
 }
     public void refreshPlanner()
     {
@@ -147,13 +173,20 @@ public void refreshspinner()
 //
 //    }
 
-        listTitle=db.TitleValues();
-
-        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listTitle);
+        List<String> listTitle1=db.TitleValues();
+        Collections.sort(listTitle1);
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listTitle1);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTitle.setAdapter(dataAdapter);
 
         addListenerOnSpinnerItemSelection();
+
+        CustomOnItemSelectedListener cs = new CustomOnItemSelectedListener();
+        String compareValue =cs.newValue;
+        if (!compareValue.equals(null)) {
+            int spinnerPosition = dataAdapter.getPosition(compareValue);
+            spTitle.setSelection(spinnerPosition);
+        }
 
     }
 
@@ -204,7 +237,7 @@ if(j==1){
 
         db.updateImage( ImageId, tagIdimage);
 
-
+       
      fetchData1();
 
              }
@@ -263,6 +296,11 @@ if(j==1){
                 else
                      ImageId=position;
 
+                if(v1.getTag()==2001)
+                {
+                    plannerImage=position;
+                }
+
             } catch (Exception e) {
                 Log.e("error", e.toString());
             }
@@ -302,16 +340,6 @@ if(j==1){
         String activities[] = rows.toArray(new String[rows.size()]);
         String act=activities[0];
 
-//
-//        final ArrayList<Integer> rows1 = db.recordIdlAST();
-//        Integer ID[] = rows1.toArray(new Integer[rows1.size()]);
-
-
-      //  for (int i = (rows.size())-1; i > 0; i--)
-
-     //  {
-            // db.addRowTest();
-            //   Integer rec_id = db.recordId();
             Integer rec_id = ID;
             Integer image_id = p.photos[pic_src];
 
@@ -349,17 +377,7 @@ if(j==1){
             sp.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             List<String> list = new ArrayList<String>();
         list=db.spinnerValues();
-//            list.add("Choose Activity");
-//            list.add("Do Homework");
-//            list.add("Brush your teeth");
-//            list.add("Have Breakfast");
-//            list.add("Clean Up");
-//        list.add("Take a Nap");
-//        list.add("Read a Book");
-//        list.add("Sing a Song");
-//        list.add("Learn a new word");
-//        list.add("Set the Table");
-//        list.add("Switch off Lights");
+
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                     android.R.layout.simple_spinner_item, list);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -466,6 +484,14 @@ if(j==1){
         try {
             CustomOnItemSelectedListener ob = new CustomOnItemSelectedListener();
             db.changePlanner(globalPlannerValue, ob.planner_id);
+            db.savePlannerImage(plannerImage,ob.planner_id);
+            List<Integer> list5 = new ArrayList<Integer>();
+            list5=db.kidsProfiles(); // to retrive kids' Id
+            Integer kidsId[]= list5.toArray(new Integer[list5.size()]);
+            for(int j=0;j<list5.size();j++)
+            {
+                db.kidsPlanner(kidsId[j], ob.planner_id);
+            }
         } catch (Exception e) {
             Log.e("error", e.toString());
         }

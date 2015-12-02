@@ -23,13 +23,14 @@ public class MainActivity extends ListActivity {
     picture_library piclib=new picture_library();
     Animation animation = null;
     ImageView disney,disney1;
-
+    Integer kidID=1;
     public static int plannerValue;
 
     MediaPlayer reward1;
 
     ArrayList<HashMap<String, Object>> players;
     HashMap<Integer, ImageView> viewholderarr=new HashMap<Integer, ImageView>();
+    HashMap<Integer, TextView> viewholderarr1=new HashMap<Integer, TextView>();
     LayoutInflater inflater;
 
     @Override
@@ -37,6 +38,7 @@ public class MainActivity extends ListActivity {
         super.onCreate(savedInstanceState);
          reward1 = MediaPlayer.create(this,R.raw.kids);
         setContentView(R.layout.activity_main);
+        ImageView plannerImage=(ImageView)findViewById(R.id.image2);
 
         inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -46,6 +48,8 @@ public class MainActivity extends ListActivity {
 
          Database dblist = new Database(MainActivity.this);
       // dblist.addRow();
+
+
         final ArrayList<String> rows = dblist.listActivities(plannerValue);
         String names[] = rows.toArray(new String[rows.size()]);
 
@@ -59,6 +63,9 @@ public class MainActivity extends ListActivity {
 
     picture_library obj = new picture_library();
     final ArrayList<Integer>imagesid=new ArrayList<Integer>();
+
+        int j= dblist.plannerImage(plannerValue);
+        plannerImage.setBackgroundResource(obj.photos[j]);
 
     for (int i = 0; i < imagesid1.size(); i++) {
         imagesid.add(obj.photos[position[i]]);
@@ -175,15 +182,24 @@ public class MainActivity extends ListActivity {
                     //set the data to be displayed
                     holder.photo.setImageDrawable(getResources().getDrawable(photoId));
                     holder.name.setText(players.get(position).get("name").toString());
+
+                     Database db = new Database(MainActivity.this);
+                     String activity_name=players.get(position).get("name").toString();
+                     Boolean status= db.checkStatus(activity_name,kidID);
+
                     //holder.team.setText(players.get(position).get("team").toString());
                     holder.photo1.setImageDrawable(getResources().getDrawable(photoId1));
                     holder.position = position;
                      viewholderarr.put(position,holder.photo1);
+                     viewholderarr1.put(position,holder.name);
 
                 //VITAL PART!!! Set the state of the
                 //CheckBox using the boolean array
 
             holder.checkBox.setChecked(checkBoxState[position]);
+
+            // for Database
+           holder.checkBox.setChecked(status);
 
             //for managing the state of the boolean
             //array according to the state of the
@@ -200,6 +216,13 @@ public class MainActivity extends ListActivity {
                        reward1.start();
 
                         reward((ImageView) viewholderarr.get(position));
+
+                        Integer kidID=1;
+
+                    //    String activity=((TextView) viewholderarr1.get(position).getText()).toString();
+                        String activity=(viewholderarr1.get(position).getText()).toString();
+                        Database db = new Database(MainActivity.this);
+                        db.setStatus(activity,kidID);
 
                     }
                     else {

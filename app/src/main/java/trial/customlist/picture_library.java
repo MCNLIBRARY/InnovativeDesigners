@@ -7,6 +7,12 @@ public class picture_library
 {
 
      Integer[] photos={R.mipmap.disney,R.mipmap.a,R.mipmap.b,R.mipmap.d,R.mipmap.e,R.mipmap.f,R.mipmap.g,R.mipmap.h,
+             R.mipmap.ic_launcher,R.mipmap.i,R.mipmap.j,R.mipmap.k,R.mipmap.l,R.mipmap.m,R.mipmap.q,R.mipmap.disney,R.mipmap.a,R.mipmap.b,R.mipmap.d,R.mipmap.e,R.mipmap.f,R.mipmap.g,R.mipmap.h,
+             R.mipmap.ic_launcher,R.mipmap.i,R.mipmap.j,R.mipmap.k,R.mipmap.l,R.mipmap.m,R.mipmap.q,R.mipmap.disney,R.mipmap.a,R.mipmap.b,R.mipmap.d,R.mipmap.e,R.mipmap.f,R.mipmap.g,R.mipmap.h,
+             R.mipmap.ic_launcher,R.mipmap.i,R.mipmap.j,R.mipmap.k,R.mipmap.l,R.mipmap.m,R.mipmap.q,R.mipmap.disney,R.mipmap.a,R.mipmap.b,R.mipmap.d,R.mipmap.e,R.mipmap.f,R.mipmap.g,R.mipmap.h,
+             R.mipmap.ic_launcher,R.mipmap.i,R.mipmap.j,R.mipmap.k,R.mipmap.l,R.mipmap.m,R.mipmap.q,R.mipmap.disney,R.mipmap.a,R.mipmap.b,R.mipmap.d,R.mipmap.e,R.mipmap.f,R.mipmap.g,R.mipmap.h,
+             R.mipmap.ic_launcher,R.mipmap.i,R.mipmap.j,R.mipmap.k,R.mipmap.l,R.mipmap.m,R.mipmap.q,R.mipmap.disney,R.mipmap.a,R.mipmap.b,R.mipmap.d,R.mipmap.e,R.mipmap.f,R.mipmap.g,R.mipmap.h,
+             R.mipmap.ic_launcher,R.mipmap.i,R.mipmap.j,R.mipmap.k,R.mipmap.l,R.mipmap.m,R.mipmap.q,R.mipmap.disney,R.mipmap.a,R.mipmap.b,R.mipmap.d,R.mipmap.e,R.mipmap.f,R.mipmap.g,R.mipmap.h,
              R.mipmap.ic_launcher,R.mipmap.i,R.mipmap.j,R.mipmap.k,R.mipmap.l,R.mipmap.m,R.mipmap.q};
 
 

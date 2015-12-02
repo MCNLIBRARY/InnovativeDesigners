@@ -21,6 +21,7 @@ public static String result;
     Database db;
     edit_activities obj;
     public List<String> list1;
+    public static String newValue , newValue1;
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
     //    Toast.makeText(parent.getContext(), "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_SHORT).show();
       db=new Database(parent.getContext());
@@ -51,7 +52,7 @@ public static String result;
 
                             try {
                                 db.addTitleValue(editable.toString());
-
+                                newValue=editable.toString();
 
                                 // obj.sp.postInvalidate();
                                 //  obj.sp.setAdapter(obj.dataAdapter);
@@ -84,7 +85,7 @@ public static String result;
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             Editable editable = input.getText();
-
+                            newValue1=editable.toString();
 
                             try {
                                 db.addSpinnerValue(editable.toString());

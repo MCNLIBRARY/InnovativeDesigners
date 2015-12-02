@@ -31,6 +31,7 @@ public class HomeActivity extends Activity{
        // }
         setContentView(R.layout.activity_home);
         db = new Database(HomeActivity.this);
+       // db.createKidsProfile();
         appname = (TextView)findViewById(R.id.textView);
         parents = (Button)findViewById(R.id.button);
         kids = (Button)findViewById(R.id.button2);
@@ -60,7 +61,7 @@ public class HomeActivity extends Activity{
               kids.setTextColor(Color.GREEN);
               kids.setBackgroundColor(Color.YELLOW);
                 Intent i = new Intent(HomeActivity.this.getApplicationContext(), edit_activities.class);
-               i.putExtra("PLANNER_ID",6);
+               i.putExtra("PLANNER_ID",1);
 
                 startActivity(i);
             }
@@ -74,12 +75,12 @@ public class HomeActivity extends Activity{
     {
 
         ArrayList<String> rows;
-        rows = db.TitleValues();
+        rows = db.plannerDetails();
         String activities[] = rows.toArray(new String[rows.size()]);
 
       //  temp=   new HashMap<String, Object>();
 
-        for (int i=2 ;i<= rows.size()-1 ; i++)
+        for (int i=0;i<=rows.size()-1;i++)
         {
             // db.addRowTest();
             //   Integer rec_id = db.recordId();
